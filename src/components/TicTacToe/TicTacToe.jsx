@@ -25,23 +25,22 @@ const TicTacToe = () => {
 
     let box_array = [box1,box2,box3, box4, box5, box6, box7, box8, box9];
 
-    const toggle = (e,num) => {
-        if(loct){
-            return 0;
-        }
-        if(count %2 === 0){
-            e.target.innerHTML = `<img src='${cross_icon}'/> `;
-            data[num]="x";
-            setCount(++count)
-        }
-        else {
-            e.target.innerHTML = `<img src='${circle_icon}'/> `;
-            data[num]="o";
-            setCount(++count)
-            
-        }
-        checkWin();
+    const toggle = (e, num) => {
+    if (loct || data[num] !== "") {
+        return;
     }
+
+    if (count % 2 === 0) {
+        e.target.innerHTML = `<img src='${cross_icon}'/>`;
+        data[num] = "x";
+    } else {
+        e.target.innerHTML = `<img src='${circle_icon}'/>`;
+        data[num] = "o";
+    }
+
+    setCount(count + 1);
+    checkWin();
+};
 
     const checkWin = () => {
         if(data[0] === data[1] && data[1] === data[2] && data[2]!==""){
